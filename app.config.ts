@@ -1,5 +1,4 @@
 import { ExpoConfig, ConfigContext } from '@expo/config';
-import Colors from './constants/Colors';
 
 export default ({ config }: ConfigContext): ExpoConfig => {
   return {
@@ -10,9 +9,9 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     privacy: 'unlisted',
     platforms: ['ios', 'android', 'web'],
     version: config.version,
-    primaryColor: Colors.primary,
+    primaryColor: '#f18b29',
     splash: {
-      backgroundColor: Colors.white1,
+      backgroundColor: '#ffffff',
       resizeMode: 'contain',
       image: './assets/images/splash.jpg',
     },
@@ -24,7 +23,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       package: 'com.pengin',
       adaptiveIcon: {
         foregroundImage: './assets/images/icon.jpg',
-        backgroundColor: Colors.primary,
+        backgroundColor: '#f18b29',
       },
     },
     ios: {

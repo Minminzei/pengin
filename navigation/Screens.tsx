@@ -67,7 +67,6 @@ export const ModalScreens: MenuConfig[] = [
     component: ProfileEditScreen,
     options: {
       title: 'プロフィール編集',
-      headerShown: false,
     },
   },
 ];
