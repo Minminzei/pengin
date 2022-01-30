@@ -1,8 +1,9 @@
 import React, { Suspense, useState } from 'react';
-import { StyleSheet, TextInput, ScrollView, Alert } from 'react-native';
+import {
+  StyleSheet, TextInput, ScrollView, Alert,
+} from 'react-native';
 import Colors from '../constants/Colors';
-import { Text, View } from '../components/Themed';
-import Loading from '../components/Loading';
+import { Text, View, Loading, KeyboardAvoidingView } from '../components';
 import { Button, Card } from 'react-native-elements';
 import Profile, { User } from '../recoil/profile';
 
@@ -34,7 +35,7 @@ function ScreenContent() : JSX.Element {
   }
 
   return (
-    <ScrollView style={styles.container}>
+    <KeyboardAvoidingView style={styles.container}>
       <Card>
         <View>
           <View style={styles.imageWrapper}>
@@ -107,7 +108,7 @@ function ScreenContent() : JSX.Element {
           />
         </View>
       </Card>
-    </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 

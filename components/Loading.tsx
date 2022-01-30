@@ -4,24 +4,6 @@ import {
 } from 'react-native';
 import Color from '../constants/Colors';
 
-const Css = StyleSheet.create({
-  loading: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  masking: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 1,
-  },
-});
-
 interface Props {
   size: 'small' | 'large' | number;
   color?: string;
@@ -37,7 +19,7 @@ function LoadingWithMask(params: {
   return (
     <View
       style={[
-        Css.masking,
+        styles.masking,
         {
           backgroundColor: params.maskColor,
         },
@@ -54,9 +36,9 @@ function LoadingWithMask(params: {
 function LoadingWithoutMask(params: {
   size: 'small' | 'large' | number;
   color: string;
-}) {
+}) : JSX.Element {
   return (
-    <View style={Css.loading}>
+    <View style={styles.loading}>
       <ActivityIndicator
         size={params.size}
         color={params.color}
@@ -78,3 +60,21 @@ export default function Loading(props:Props) : JSX.Element {
     color: props.color || Color.blue1,
   });
 }
+
+const styles = StyleSheet.create({
+  loading: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  masking: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1,
+  },
+});
