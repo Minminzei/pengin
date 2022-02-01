@@ -8,7 +8,7 @@ import { createBottomTabNavigator, BottomTabBarProps } from '@react-navigation/b
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, Pressable, StyleSheet } from 'react-native';
+import { ColorSchemeName, TouchableOpacity, StyleSheet } from 'react-native';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import { Text, View } from '../components/Themed';
@@ -54,11 +54,10 @@ function RootNavigator() {
 }
 
 /**
- * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
+ * グローバルメニューのスクリーン群
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
-
 function BottomTabNavigator() : JSX.Element {
   const colorScheme = useColorScheme();
 
@@ -68,7 +67,7 @@ function BottomTabNavigator() : JSX.Element {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}
-      tabBar={TabBar}
+      tabBar={BottomMenu}
     >
       {GlobalMenuScreens.map(row => (
         <BottomTab.Screen
@@ -82,6 +81,9 @@ function BottomTabNavigator() : JSX.Element {
   );
 }
 
+/**
+ * 詳細ページ系のスクリーン
+ */
 function DetailScreenNavigator() : JSX.Element[] {
   return DetailScreens.map(props => (
     <Stack.Screen
@@ -93,6 +95,9 @@ function DetailScreenNavigator() : JSX.Element[] {
   ));
 }
 
+/**
+ * Modalで開くスクリーン
+ */
 function ModalScreenNavigator() : JSX.Element[] {
   return ModalScreens.map(props => (
     <Stack.Screen
@@ -105,9 +110,9 @@ function ModalScreenNavigator() : JSX.Element[] {
 }
 
 /**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
+ * メニュー
  */
- function TabBar(params:BottomTabBarProps) {
+ function BottomMenu(params:BottomTabBarProps) {
   const { state, descriptors, navigation } = params;
   return (
     <View style={styles.menus}>
@@ -115,7 +120,7 @@ function ModalScreenNavigator() : JSX.Element[] {
         const { options } = descriptors[route.key];
         const isFocused = state.index === index;
         return (
-          <Pressable
+          <TouchableOpacity
             style={styles.menu}
             onPress={() => {
               navigation.navigate(initialRouteName, { screen: route.name });
@@ -135,7 +140,7 @@ function ModalScreenNavigator() : JSX.Element[] {
             >
               {options.title}
             </Text>
-          </Pressable>
+          </TouchableOpacity>
         );
       })}
     </View>
