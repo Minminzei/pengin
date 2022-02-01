@@ -33,7 +33,7 @@ pod install
 cd ../
 yarn server
 ```
-# xcodeでプロジェクトをbuildする
+xcodeでプロジェクトをbuildする
 1. xcodeを起動して、open a project or fileで `pengin/ios`を開く
 2. simulatorにプロジェクトをinstallする
 ![xcode](https://user-images.githubusercontent.com/3320542/151898522-3287b691-8e4e-47c3-82a5-c14fe4458012.jpg)
