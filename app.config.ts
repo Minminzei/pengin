@@ -13,7 +13,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     splash: {
       backgroundColor: '#ffffff',
       resizeMode: 'contain',
-      image: './assets/images/splash.jpg',
+      image: './src/assets/images/splash.png',
     },
     extra: {
       ENV: process.env.ENV || 'development',
@@ -22,13 +22,13 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     android: {
       package: 'com.pengin',
       adaptiveIcon: {
-        foregroundImage: './assets/images/icon.jpg',
+        foregroundImage: './src/assets/images/icon.png',
         backgroundColor: '#f18b29',
       },
     },
     ios: {
       supportsTablet: true,
-      icon: './assets/images/icon.jpg',
+      icon: './src/assets/images/icon.png',
       bundleIdentifier: 'com.pengin',
     },
   };

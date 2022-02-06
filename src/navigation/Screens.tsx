@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { RootStackParamList, RootTabParamList } from '../types';
+import { RootStackParamList, RootTabParamList } from '../../types';
 import Icons from '../constants/Icons';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import UsersScreen from '../screens/UsersScreen';
@@ -33,6 +33,7 @@ export const GlobalMenuScreens: GlobalMenuConfig[] = [
       headerShown: false,
     },
   },
+  /*
   {
     page: 'Profile',
     component: ProfileScreen,
@@ -42,6 +43,7 @@ export const GlobalMenuScreens: GlobalMenuConfig[] = [
       headerShown: false,
     },
   },
+  */
 ];
 
 export const DetailScreens: MenuConfig[] = [

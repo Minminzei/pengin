@@ -3,13 +3,35 @@ import { StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
 import Loading from '../components/Loading';
 import { Card } from 'react-native-elements';
-import { user } from '../recoil/users';
-import { useRecoilValue } from 'recoil';
+import {
+  usePreloadedQuery,
+  useQueryLoader,
+  graphql
+} from 'react-relay/hooks';
+import { UserScreenQuery as UserScreenType } from '../__generated__/UserScreenQuery.graphql';
+const UserScreenQuery = graphql`
+  query UserScreenQuery($id: ID!) {
+    user(id: $id) {
+      id
+      name
+      image
+      location
+      comment
+      posts {
+        id
+        title
+        published
+        link
+      }
+    }
+  }
+`;
 
 function ScreenContent(props: {
-  id: number;
+  id: any;
+  queryReference: any;
 }) : JSX.Element {
-  const data = useRecoilValue(user(props.id));
+  const { user } = usePreloadedQuery<UserScreenType>(UserScreenQuery, props.queryReference);
   return (
     <View style={styles.container}>
       <Card>
@@ -17,13 +39,13 @@ function ScreenContent(props: {
           <Card.Image
             style={styles.image}
             resizeMode="cover"
-            source={{ uri: data.image }}
+            source={{ uri: user.image }}
           />
         </View>
-        <Card.Title h1>{data.name}</Card.Title>
+        <Card.Title h1>{user.name}</Card.Title>
         <View style={styles.body}>
-          <Text>{data.location}</Text>
-          <Text>{data.comment}</Text>
+          <Text>{user.location}</Text>
+          <Text>{user.comment}</Text>
         </View>
       </Card>
     </View>
@@ -32,12 +54,20 @@ function ScreenContent(props: {
 
 export default function UserScreen({ route }: any) : JSX.Element {
   const { params } = route;
+  const [queryReference, loadQuery, disposeQuery] = useQueryLoader(UserScreenQuery);
+  React.useEffect(() => {
+    loadQuery({ id: params.id });
+    return () => {
+      disposeQuery();
+    };
+  }, [loadQuery, disposeQuery, params.id]);
   return (
     <View style={styles.container}>
       <Suspense fallback={<Loading size="large" />}>
-        <ScreenContent
+        {queryReference && <ScreenContent
           id={params.id as number}
-        />
+          queryReference={queryReference}
+        />}
       </Suspense>
     </View>
   );

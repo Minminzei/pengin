@@ -3,6 +3,8 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import { RecoilRoot } from 'recoil';
+import { RelayEnvironmentProvider } from 'react-relay/hooks';
+import RelayEnvironment from './RelayEnvironment';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -12,13 +14,15 @@ export default function App() {
     return null;
   } else {
     return (
-      <RecoilRoot>
-        <SafeAreaProvider>
-          <SafeAreaView style={{ flex: 1 }}>
-            <Navigation colorScheme={colorScheme} />
-          </SafeAreaView>
-        </SafeAreaProvider>
-      </RecoilRoot>
+      <RelayEnvironmentProvider environment={RelayEnvironment}>
+        <RecoilRoot>
+          <SafeAreaProvider>
+            <SafeAreaView style={{ flex: 1 }}>
+              <Navigation colorScheme={colorScheme} />
+            </SafeAreaView>
+          </SafeAreaProvider>
+        </RecoilRoot>
+      </RelayEnvironmentProvider>
     );
   }
 }

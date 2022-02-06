@@ -45,4 +45,7 @@ yarn server
 
 # iosシュミレーターで起動
 yarn ios
+
+# GraphiQLにアクセス
+http://localhost:4000/graphql
 ```

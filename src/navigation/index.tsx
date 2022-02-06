@@ -15,7 +15,7 @@ import { Text, View } from '../components/Themed';
 import {
   GlobalMenuScreens, DetailScreens, ModalScreens,
 } from './Screens';
-import { RootStackParamList, RootTabParamList, initialRouteName } from '../types';
+import { RootStackParamList, RootTabParamList, initialRouteName } from '../../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
