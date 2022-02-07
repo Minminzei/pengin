@@ -54,8 +54,7 @@ function ScreenContent(props: {
   const { user } = usePreloadedQuery<ProfileScreenType>(ProfileEditScreenQuery, props.queryReference);
   const [commit] = useMutation<ProfileMutationType>(ProfileEditScreenMutation);
   const [data, setUser] = useState(user);
-
-  function saveProf() : void {
+  function save() : void {
     setLoading(true);
     const input: UserInput = {
       id: data.id,
@@ -150,7 +149,7 @@ function ScreenContent(props: {
         <View style={styles.button}>
           <Button
             title="保存する"
-            onPress={() => saveProf()}
+            onPress={() => save()}
             loading={loading}
           />
         </View>

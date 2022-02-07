@@ -28,8 +28,7 @@ function ScreenContent(props: {
   id: any;
   queryReference: any;
 }) : JSX.Element {
-  const data = usePreloadedQuery<UserScreenType>(UserScreenQuery, props.queryReference);
-  const { user } = data;
+  const { user } = usePreloadedQuery<UserScreenType>(UserScreenQuery, props.queryReference);
   return (
     <View style={styles.container}>
       <Card>
