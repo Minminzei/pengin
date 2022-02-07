@@ -122,13 +122,13 @@ query {
 --> [ERROR] ✖︎ The type `User` has no field `friends`.
 ```
 ### ReactRelayとは？
-GraphQLをReactで実装するためのフレームワーク。主にComponentとGraphQLの関連付けとキャッシュの管理を行う。
+GraphQLをReactで実装するためのフレームワーク。主にGraphQLによるState管理と、キャッシュの管理を行う。
 
-### ComponentとGraphQLの関連付け
-コンポーネントごとに必要なAPIとデータを宣言し、コンポーネントの役割を明確にする。使用するデータが更新されたらレンダリングが発火する。
+### GraphQLによるComponentのState管理
+コンポーネントごとに必要なAPIとデータを宣言し、使用するGraphQLによるStateが更新されたらレンダリングが発火する。
 ```
 # ./src/screens/ProfileScreen.tsx
-# 使用したいAPIとデータを宣言
+# 使用したいAPIとデータを宣言。user(id: $id)というAPIを使って、{ id...comment }というUserデータを使用する。
 query ProfileScreenQuery($id: ID!) {
   user(id: $id) {
     id
@@ -138,11 +138,11 @@ query ProfileScreenQuery($id: ID!) {
     comment
   }
 }
-# StateとComponentの関連付け。userが更新されたらScreenContentが再レンダリングされる。
+# StateとComponentの関連付け。userが更新されたら関数コンポーネントScreenContentが再レンダリングされる。
 function ScreenContent(props) {
   const { user } = usePreloadedQuery<ProfileScreenType>(ProfileScreenQuery, props.queryReference);
 ```
-余談：`ProfileEditScreen`で`type User(ID:2の森岡)`を更新すると、このUserを使用している`ProfileEditScreen`, `ProfileScreen`, `UsersScreen`が再レンダリングされる。
+さらに詳しく：`ProfileEditScreen`で`type User(ID:2の森岡)`を更新すると、このUserを使用している`ProfileEditScreen`, `ProfileScreen`, `UsersScreen`が再レンダリングされる。
 
 ### キャッシュ管理
 データ単位でキャッシュを管理してくれる。例えば`UsersScreen`で`type User(ID:2の森岡)`を取得しているので、同じデータを使う`ProfileScreen`や`ProfileEditScreen`ではキャッシュからデータを取得する。
