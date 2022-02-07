@@ -204,7 +204,21 @@ const { posts } = useFragment(
   props.user,
 );
 ```
-
+### Mutationについて
+加筆中。。。。。
+```
+# ProfileEditScreen
+# 使用する更新系APIと送信するデータ型、レスポンス結果を宣言する
+mutation ProfileEditScreenMutation($input: UserInput) {
+  saveUser(input: $input) {
+    id
+    name
+    image
+    location
+    comment
+  }
+}
+```
 ハマりポイント
 ---
 ハマったポイントを再現確認＆列挙中。。追々更新していきます。
