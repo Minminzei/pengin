@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { RootStackParamList, RootTabParamList } from '../../types';
-import Icons from '../constants/Icons';
-import UsersScreen from '../screens/UsersScreen';
-import UserScreen from '../screens/UserScreen';
-import ProfileScreen from '../screens/ProfileScreen';
-import ProfileEditScreen from '../screens/ProfileEditScreen';
+import Icons from '@constants/Icons';
+import UsersScreen from '@screens/UsersScreen';
+import UserScreen from '@screens/UserScreen';
+import ProfileScreen from '@screens/ProfileScreen';
+import ProfileEditScreen from '@screens/ProfileEditScreen';
 
 export type RouteName = keyof RootStackParamList | keyof RootTabParamList;
 

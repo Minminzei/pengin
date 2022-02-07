@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { StyleSheet, FlatList } from 'react-native';
-import { View, Text } from '../components/Themed';
-import Loading from '../components/Loading';
+import { View, Text } from '@components/Themed';
+import Loading from '@components/Loading';
 import { Button, Card } from 'react-native-elements';
 import {
   loadQuery,

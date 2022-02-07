@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { StyleSheet, Pressable } from 'react-native';
-import { Text, View } from '../components/Themed';
+import { Text, View } from '@components/Themed';
 import {
   useFragment,
   graphql
 } from 'react-relay/hooks';
 import { UserPost_user$key } from '../__generated__/UserPost_user.graphql';
-import Color from '../constants/Colors';
+import Color from '@constants/Colors';
 import * as Linking from 'expo-linking';
 
 interface Props {

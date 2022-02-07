@@ -2,11 +2,11 @@ import React, { Suspense, useState } from 'react';
 import {
   StyleSheet, TextInput, Alert,
 } from 'react-native';
-import Colors from '../constants/Colors';
-import { Text, View, Loading, KeyboardAvoidingView } from '../components';
+import Colors from '@constants/Colors';
+import { Text, View, Loading, KeyboardAvoidingView } from '@components';
 import { Button, Card } from 'react-native-elements';
-import { userId } from '../constants/Debug';
-import Message from '../recoil/message';
+import { userId } from '@constants/Debug';
+import Message from '@lib/message';
 import {
   usePreloadedQuery,
   useQueryLoader,

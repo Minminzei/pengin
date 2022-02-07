@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Message from '../recoil/message';
-import Toast from '../components/Toast';
+import Message from '@lib/message';
+import Toast from '@components/Toast';
 
 export default function MessageComponent() {
   const { get, clear } = Message();

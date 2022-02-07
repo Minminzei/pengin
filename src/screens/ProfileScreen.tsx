@@ -1,14 +1,14 @@
 import React, { Suspense } from 'react';
 import { StyleSheet } from 'react-native';
-import { Text, View } from '../components/Themed';
-import Loading from '../components/Loading';
+import { Text, View } from '@components/Themed';
+import Loading from '@components/Loading';
 import { Button, Card } from 'react-native-elements';
 import {
   usePreloadedQuery,
   useQueryLoader,
   graphql
 } from 'react-relay/hooks';
-import { userId } from '../constants/Debug';
+import { userId } from '@constants/Debug';
 import {
   ProfileScreenQuery as ProfileScreenType,
 } from '../__generated__/ProfileScreenQuery.graphql';
