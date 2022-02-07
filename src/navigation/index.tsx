@@ -9,9 +9,9 @@ import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName, TouchableOpacity, StyleSheet } from 'react-native';
-import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
-import { Text, View } from '../components/Themed';
+import Colors from '@constants/Colors';
+import useColorScheme from '@hooks/useColorScheme';
+import { Text, View } from '@components/Themed';
 import Message from './Message';
 import {
   GlobalMenuScreens, DetailScreens, ModalScreens,

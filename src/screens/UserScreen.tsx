@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { StyleSheet } from 'react-native';
-import { Text, View } from '../components/Themed';
-import Loading from '../components/Loading';
+import { Text, View } from '@components/Themed';
+import Loading from '@components/Loading';
 import { Card } from 'react-native-elements';
 import {
   usePreloadedQuery,

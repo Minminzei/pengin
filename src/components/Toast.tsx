@@ -3,9 +3,9 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {
   StyleSheet, Animated, TouchableOpacity,
 } from 'react-native';
-import { Text, View } from './Themed';
-import Color from '../constants/Colors';
-import Icons from '../constants/Icons';
+import { Text, View } from '@components/Themed';
+import Color from '@constants/Colors';
+import Icons from '@constants/Icons';
 
 const initialBottom = -200;
 
@@ -30,7 +30,7 @@ export default function Toast(props:Props) : JSX.Element {
   React.useEffect(() => {
     const timerId = setTimeout(() => close(), 4000);
     const animate = Animated.timing(bottom, {
-      toValue: 30,
+      toValue: 60,
       duration: 150,
       useNativeDriver: false,
     });

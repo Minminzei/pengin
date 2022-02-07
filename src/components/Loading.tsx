@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
   View, StyleSheet, ActivityIndicator,
 } from 'react-native';
-import Color from '../constants/Colors';
+import Color from '@constants/Colors';
 
 interface Props {
   size: 'small' | 'large' | number;

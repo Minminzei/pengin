@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-   KeyboardAvoidingView, KeyboardAvoidingViewProps,
+  KeyboardAvoidingView, KeyboardAvoidingViewProps,
   Platform, ScrollView, StyleSheet, StatusBar, ViewStyle,
 } from 'react-native';
 import { isIphoneX } from 'react-native-iphone-x-helper';
