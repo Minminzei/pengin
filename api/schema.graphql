@@ -14,7 +14,7 @@ type User {
   image: String!
   location: String
   comment: String
-  posts: [Post]
+  posts: [Post!]
 }
 
 type Post {
@@ -24,11 +24,13 @@ type Post {
   link: String!
 }
 
-input PostInput {
-  title: String!
-  link: String!
+input UserInput {
+  id: ID!
+  name: String!
+  location: String!
+  comment: String
 }
 
 type Mutation {
-  createPost(post: PostInput!): Post!
+  saveUser(input: UserInput): User!
 }

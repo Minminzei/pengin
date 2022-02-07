@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8d998e8884d820cfe7658cad16ecbd02>>
+ * @generated SignedSource<<e3e9ce2e217175438db518c112efe8e4>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -23,7 +23,7 @@ export type UsersScreenQuery$data = {
       readonly title: string;
       readonly published: boolean | null;
       readonly link: string;
-    } | null> | null;
+    }> | null;
   }> | null;
 };
 export type UsersScreenQueryResponse = UsersScreenQuery$data;

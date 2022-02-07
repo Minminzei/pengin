@@ -1,36 +1,83 @@
 import React, { Suspense, useState } from 'react';
 import {
-  StyleSheet, TextInput, ScrollView, Alert,
+  StyleSheet, TextInput, Alert,
 } from 'react-native';
 import Colors from '../constants/Colors';
 import { Text, View, Loading, KeyboardAvoidingView } from '../components';
 import { Button, Card } from 'react-native-elements';
-import Profile, { User } from '../recoil/profile';
+import { userId } from '../constants/Debug';
+import Message from '../recoil/message';
+import {
+  usePreloadedQuery,
+  useQueryLoader,
+  graphql,
+  useMutation,
+} from 'react-relay/hooks';
+import {
+  ProfileEditScreenQuery as ProfileScreenType,
+} from '../__generated__/ProfileEditScreenQuery.graphql';
+import {
+  ProfileEditScreenMutation as ProfileMutationType,
+  UserInput,
+} from '../__generated__/ProfileEditScreenMutation.graphql';
 
-function ScreenContent() : JSX.Element {
-  const { get, save, profile } = Profile();
-  const [loading, setLoading] = useState<boolean>(false);
-  if (!profile) {
-    throw get();
-  }
-  const [user, setUserData] = useState<User>(profile);
-
-  async function saveProf() : Promise<void> {
-    try {
-      setLoading(true);
-      await save(user);
-      Alert.alert('保存しました');
-    } catch (e:any) {
-      Alert.alert(e.message);
-    } finally {
-      setLoading(false);
+const ProfileEditScreenQuery = graphql`
+  query ProfileEditScreenQuery($id: ID!) {
+    user(id: $id) {
+      id
+      name
+      image
+      location
+      comment
     }
   }
+`;
 
-  function update(data: any) : void {
-    setUserData({
-      ...user,
+const ProfileEditScreenMutation = graphql`
+  mutation ProfileEditScreenMutation($input: UserInput) {
+    saveUser(input: $input) {
+      id
+      name
+      image
+      location
+      comment
+    }
+  }
+`;
+
+function ScreenContent(props: {
+  queryReference: any;
+  onComplete: Function;
+}) : JSX.Element {
+
+  const [loading, setLoading] = useState<boolean>(false);
+  const { user } = usePreloadedQuery<ProfileScreenType>(ProfileEditScreenQuery, props.queryReference);
+  const [commit] = useMutation<ProfileMutationType>(ProfileEditScreenMutation);
+  const [data, setUser] = useState(user);
+
+  function saveProf() : void {
+    setLoading(true);
+    const input: UserInput = {
+      id: data.id,
+      name: data.name,
+      location: data.location || '',
+      comment: data.comment,
+    };
+    commit({
+      variables: { input },
+      onCompleted() {
+        props.onComplete();
+      },
+      onError(error: Error) {
+        setLoading(false);
+      }
+    });
+  }
+
+  function update(input: any) : void {
+    setUser({
       ...data,
+      ...input,
     });
   }
 
@@ -54,7 +101,7 @@ function ScreenContent() : JSX.Element {
               autoCapitalize="none"
               autoCorrect={false}
               onChangeText={(name) => update({ name })}
-              value={user.name}
+              value={data.name}
               underlineColorAndroid="transparent"
               blurOnSubmit={false}
               style={styles.form}
@@ -71,7 +118,7 @@ function ScreenContent() : JSX.Element {
               autoCapitalize="none"
               autoCorrect={false}
               onChangeText={(location) => update({ location })}
-              value={user.location}
+              value={data.location || ''}
               underlineColorAndroid="transparent"
               blurOnSubmit={false}
               style={styles.form}
@@ -91,7 +138,7 @@ function ScreenContent() : JSX.Element {
               autoCapitalize="none"
               autoCorrect={false}
               onChangeText={(comment) => update({ comment })}
-              value={user.comment}
+              value={data.comment || ''}
               underlineColorAndroid="transparent"
               blurOnSubmit={false}
               style={[styles.form, styles.textFiled]}
@@ -112,11 +159,31 @@ function ScreenContent() : JSX.Element {
   );
 }
 
-export default function UserScreen() : JSX.Element {
+export default function ProfileEditScreen({ navigation }: any) : JSX.Element {
+  const { set } = Message();
+  const [queryReference, loadQuery, disposeQuery] = useQueryLoader<ProfileScreenType>(ProfileEditScreenQuery);
+  React.useEffect(() => {
+    loadQuery({ id: userId });
+    return () => {
+      disposeQuery();
+    };
+  }, [loadQuery]);
+  function completeEdit() : void {
+    set({
+      type: 'toast',
+      message: '保存しました',
+    });
+    navigation.navigate('Profile');
+  }
   return (
     <View style={styles.container}>
       <Suspense fallback={<Loading size="large" />}>
-        <ScreenContent />
+        {queryReference && (
+          <ScreenContent
+            queryReference={queryReference}
+            onComplete={completeEdit}
+          />
+        )}
       </Suspense>
     </View>
   );

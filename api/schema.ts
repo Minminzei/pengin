@@ -19,6 +19,15 @@ const schema = buildSchema(`
     published: Boolean!
     link: String
   }
+  input UserInput {
+    id: ID!
+    name: String!
+    location: String!
+    comment: String
+  }
+  type Mutation {
+    saveUser(input: UserInput): User!
+  }
 `);
 
 export default schema;

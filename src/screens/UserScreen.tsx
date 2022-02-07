@@ -9,6 +9,8 @@ import {
   graphql
 } from 'react-relay/hooks';
 import { UserScreenQuery as UserScreenType } from '../__generated__/UserScreenQuery.graphql';
+import UserPost from './UserPost';
+
 const UserScreenQuery = graphql`
   query UserScreenQuery($id: ID!) {
     user(id: $id) {
@@ -17,12 +19,7 @@ const UserScreenQuery = graphql`
       image
       location
       comment
-      posts {
-        id
-        title
-        published
-        link
-      }
+      ...UserPost_user
     }
   }
 `;
@@ -31,7 +28,8 @@ function ScreenContent(props: {
   id: any;
   queryReference: any;
 }) : JSX.Element {
-  const { user } = usePreloadedQuery<UserScreenType>(UserScreenQuery, props.queryReference);
+  const data = usePreloadedQuery<UserScreenType>(UserScreenQuery, props.queryReference);
+  const { user } = data;
   return (
     <View style={styles.container}>
       <Card>
@@ -47,6 +45,7 @@ function ScreenContent(props: {
           <Text>{user.location}</Text>
           <Text>{user.comment}</Text>
         </View>
+        <UserPost user={user} />
       </Card>
     </View>
   );

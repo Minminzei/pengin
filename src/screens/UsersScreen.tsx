@@ -40,7 +40,7 @@ function UserList(props: {
       <FlatList
         data={users}
         renderItem={({ item:user }) => (
-          <Card key={user?.id}>
+          <Card key={user.id}>
             <View style={styles.item}>
               <Card.Image
                 style={styles.image}

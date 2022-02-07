@@ -3,15 +3,32 @@ import { StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
 import Loading from '../components/Loading';
 import { Button, Card } from 'react-native-elements';
-import Profile from '../recoil/profile';
-
-function ScreenContent(props:{
-  onPress: Function;
-}) : JSX.Element {
-  const { get, profile } = Profile();
-  if (!profile) {
-    throw get();
+import {
+  usePreloadedQuery,
+  useQueryLoader,
+  graphql
+} from 'react-relay/hooks';
+import { userId } from '../constants/Debug';
+import {
+  ProfileScreenQuery as ProfileScreenType,
+} from '../__generated__/ProfileScreenQuery.graphql';
+const ProfileScreenQuery = graphql`
+  query ProfileScreenQuery($id: ID!) {
+    user(id: $id) {
+      id
+      name
+      image
+      location
+      comment
+    }
   }
+`;
+
+function ScreenContent(props: {
+  onPress: Function;
+  queryReference: any;
+}) : JSX.Element {
+  const { user } = usePreloadedQuery<ProfileScreenType>(ProfileScreenQuery, props.queryReference);
   return (
     <View>
       <Card>
@@ -20,13 +37,13 @@ function ScreenContent(props:{
             <Card.Image
               style={styles.image}
               resizeMode="cover"
-              source={{ uri: profile.image }}
+              source={{ uri: user.image }}
             />
           </View>
-          <Card.Title h1>{profile.name}</Card.Title>
+          <Card.Title h1>{user.name}</Card.Title>
           <View style={styles.body}>
-            <Text>{profile.location}</Text>
-            <Text>{profile.comment}</Text>
+            <Text>{user.location}</Text>
+            <Text>{user.comment}</Text>
           </View>
         </View>
         <View style={styles.button}>
@@ -40,13 +57,23 @@ function ScreenContent(props:{
   );
 }
 
-export default function UserScreen({ navigation }: any) : JSX.Element {
+export default function ProfileScreen({ navigation }: any) : JSX.Element {
+  const [queryReference, loadQuery, disposeQuery] = useQueryLoader<ProfileScreenType>(ProfileScreenQuery);
+  React.useEffect(() => {
+    loadQuery({ id: userId });
+    return () => {
+      disposeQuery();
+    };
+  }, [loadQuery]);
   return (
     <View style={styles.container}>
       <Suspense fallback={<Loading size="large" />}>
-        <ScreenContent
-          onPress={() => navigation.navigate('ProfileEdit')}
-        />
+        {queryReference && (
+          <ScreenContent
+            onPress={() => navigation.navigate('ProfileEdit')}
+            queryReference={queryReference}
+          />
+        )}
       </Suspense>
     </View>
   );

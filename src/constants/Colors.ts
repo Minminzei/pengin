@@ -22,7 +22,7 @@ export default {
   white3: '#FFFFFF60',
   black1: '#364042',
   black2: '#5c6882',
-  black3: '#CCD1DB',
+  black3: '#CCD1DB80',
   blue1: '#448EF6',
   blue2: '#E3F2FD',
 };

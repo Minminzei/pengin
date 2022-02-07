@@ -2208,7 +2208,7 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
-"@types/relay-runtime@*":
+"@types/relay-runtime@*", "@types/relay-runtime@^13.0.1":
   version "13.0.1"
   resolved "https://registry.yarnpkg.com/@types/relay-runtime/-/relay-runtime-13.0.1.tgz#d148c41dfceb5ad13e90b80a382e2a0aee1dfc80"
   integrity sha512-zV5x2SBywHoEY44JTJgL7XuSCsQUBXnqarlrSH7Zp/6gJM/XqEAYYuC3+mx27GyrysnXJooEkwZinjfw2ap+bw==
@@ -7364,7 +7364,7 @@ relay-compiler@^13.0.2:
   resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-13.0.2.tgz#2ec086bcc55ac8cb94cc08a19be129e037ca8044"
   integrity sha512-Gg/5FNj8gz03GRkG5KjMNpDB4nOeApDFZq+8CZehu3KkQQ+vNIurX6RiTY3UNUYvg5SX2A9DS5bq5iHJ8iEV3A==
 
-relay-runtime@13.0.2:
+relay-runtime@13.0.2, relay-runtime@^13.0.2:
   version "13.0.2"
   resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-13.0.2.tgz#02adb73ddc159c57b92a23c52984bf73fae0d1fc"
   integrity sha512-sP4lNGfFcOm7tQD12qlvwsiOREDgjkw4FQAjtemmtwivKOqI4qHAL22Ar62r5TPVlASn4iVWMk7rIdIJI20KGQ==
