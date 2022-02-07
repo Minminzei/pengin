@@ -7,7 +7,7 @@
     "ios": "yarn run build && expo start --ios",
     "server": "./node_modules/.bin/ts-node api/server.ts --experimental-modules",
     "eject": "expo eject",
-    "build": "relay-compiler --src ./src --schema ./api/schema.graphql --artifactDirectory ./src/__generated__",
+    "build": "relay-compiler --src ./src --schema ./schema.graphql --artifactDirectory ./src/__generated__",
     "test": "jest --watchAll"
   },
   "jest": {

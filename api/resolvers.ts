@@ -2,11 +2,9 @@ import { Users } from './data';
 
 const resolvers = {
   users: async () => {
-    console.log('users resolvers');
     return Users;
   },
   user: async (params: { id: string }) => {
-    console.log(`users(${params.id}) resolvers`);
     return Users.find((user) => user.id == params.id);
   },
   saveUser: async (params: {
