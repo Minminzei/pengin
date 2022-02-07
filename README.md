@@ -102,7 +102,16 @@ query {
 ```
 存在しないAPIやデータを使おうとするとコンパイル時にエラーになる
 ```
-# 存在しないデータのfieldをリクエスト
+# type Queryに存在しないAPIを呼び出す
+query {
+  findUserByName(name: "ゲスト") {
+    id
+    name
+  }
+}
+---> [ERROR] ✖︎ The type `Query` has no field `findUserByName`.
+
+# type Userに存在しないデータのfieldをリクエスト
 query {
   users {
     id
@@ -111,20 +120,12 @@ query {
   }
 }
 --> [ERROR] ✖︎ The type `User` has no field `friends`.
-# 存在しないAPIを呼び出す
-query {
-  findUserByName(name: "ゲスト") {
-    id
-    name
-  }
-}
----> [ERROR] ✖︎ The type `Query` has no field `findUserByName`.
 ```
 ### ReactRelayとは？
-GraphQLをReactで実装するためのフレームワーク
+GraphQLをReactで実装するためのフレームワーク。主にComponentとGraphQLの関連付けとキャッシュの管理を行う。
 
 ### ComponentとGraphQLの関連付け
-コンポーネントごとに必要なデータを宣言し、コンポーネントの役割を明確にする。使用するデータが更新されたらレンダリングが発火する。
+コンポーネントごとに必要なAPIとデータを宣言し、コンポーネントの役割を明確にする。使用するデータが更新されたらレンダリングが発火する。
 ```
 # ./src/screens/ProfileScreen.tsx
 # 使用したいAPIとデータを宣言
@@ -141,10 +142,10 @@ query ProfileScreenQuery($id: ID!) {
 function ScreenContent(props) {
   const { user } = usePreloadedQuery<ProfileScreenType>(ProfileScreenQuery, props.queryReference);
 ```
-`ProfileEditScreen`で`type User(ID:2の森岡)`を更新すると、このUserを使用している`ProfileEditScreen`, `ProfileScreen`, `UsersScreen`が再レンダリングされる。
+余談：`ProfileEditScreen`で`type User(ID:2の森岡)`を更新すると、このUserを使用している`ProfileEditScreen`, `ProfileScreen`, `UsersScreen`が再レンダリングされる。
 
 ### キャッシュ管理
-データ単位でキャッシュを管理してくれる。例えば`UsersScreen`で`type User(ID:2の森岡)`を取得しているので、`ProfileScreen`や`ProfileEditScreen`ではキャッシュからデータを取得する。
+データ単位でキャッシュを管理してくれる。例えば`UsersScreen`で`type User(ID:2の森岡)`を取得しているので、同じデータを使う`ProfileScreen`や`ProfileEditScreen`ではキャッシュからデータを取得する。
 ```
 # UsersScreenでID:2のUserを含むユーザー一覧を取得している
 query UsersScreenQuery {
