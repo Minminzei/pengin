@@ -1,21 +1,44 @@
 import React, { Suspense } from 'react';
 import { StyleSheet, FlatList } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 import { View, Text } from '../components/Themed';
 import Loading from '../components/Loading';
 import { Button, Card } from 'react-native-elements';
-import { useRecoilValue } from 'recoil';
-import { users } from '../recoil/users';
+import {
+  loadQuery,
+  usePreloadedQuery,
+  graphql,
+} from 'react-relay/hooks';
+import { UsersScreenQuery as UserScreenType } from '../__generated__/UsersScreenQuery.graphql';
+import RelayEnvironment from '../RelayEnvironment';
+
+const UsersScreenQuery = graphql`
+  query UsersScreenQuery {
+    users {
+      id
+      name
+      image
+      location
+      comment
+      posts {
+        id
+        title
+        published
+        link
+      }
+    }
+  }
+`;
+
+const preloadedQuery = loadQuery<UserScreenType>(RelayEnvironment, UsersScreenQuery, {});
 
 function UserList(props: {
-  navigate: ((id: number) => void),
+  navigate: ((id: string) => void);
 }) : JSX.Element {
-  const list = useRecoilValue(users);
-
+  const { users } = usePreloadedQuery(UsersScreenQuery, preloadedQuery);
   return (
     <View style={styles.cards}>
       <FlatList
-        data={list}
+        data={users}
         renderItem={({ item:user }) => (
           <Card key={user.id}>
             <View style={styles.item}>
@@ -29,12 +52,6 @@ function UserList(props: {
               </View>
             </View>
             <Button
-              ViewComponent={LinearGradient}
-              linearGradientProps={{
-                colors: ['red', 'pink'],
-                start: { x: 0, y: 0.5 },
-                end: { x: 1, y: 0.5 },
-              }}
               title="詳細"
               onPress={() => props.navigate(user.id)}
             />
@@ -50,7 +67,7 @@ export default function UsersScreen({ navigation }: any) : JSX.Element {
     <View style={styles.container}>
       <Suspense fallback={<Loading size="large" />}>
         <UserList
-          navigate={(id: number) => navigation.navigate('User', { id })}
+          navigate={(id: string) => navigation.navigate('User', { id })}
         />
       </Suspense>
     </View>

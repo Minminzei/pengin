@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { RootStackParamList, RootTabParamList } from '../types';
+import { RootStackParamList, RootTabParamList } from '../../types';
 import Icons from '../constants/Icons';
-import NotFoundScreen from '../screens/NotFoundScreen';
 import UsersScreen from '../screens/UsersScreen';
 import UserScreen from '../screens/UserScreen';
 import ProfileScreen from '../screens/ProfileScreen';
@@ -50,13 +49,6 @@ export const DetailScreens: MenuConfig[] = [
     component: UserScreen,
     options: {
       title: 'ホーム',
-    },
-  },
-  {
-    page: 'NotFound',
-    component: NotFoundScreen,
-    options: {
-      title: 'ページが見つかりません',
     },
   },
 ];

@@ -12,10 +12,11 @@ import { ColorSchemeName, TouchableOpacity, StyleSheet } from 'react-native';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import { Text, View } from '../components/Themed';
+import Message from './Message';
 import {
   GlobalMenuScreens, DetailScreens, ModalScreens,
 } from './Screens';
-import { RootStackParamList, RootTabParamList, initialRouteName } from '../types';
+import { RootStackParamList, RootTabParamList, initialRouteName } from '../../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
@@ -24,6 +25,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <RootNavigator />
+      <Message />
     </NavigationContainer>
   );
 }

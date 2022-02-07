@@ -6,6 +6,7 @@ const Icons: {
   people: 'account-multiple-outline',
   setting: 'cog-outline',
   location: 'map-marker-outline',
+  close: 'close',
 }
 
 export default Icons;
