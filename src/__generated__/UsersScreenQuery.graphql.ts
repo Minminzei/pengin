@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e3e9ce2e217175438db518c112efe8e4>>
+ * @generated SignedSource<<b80a51e3dcdb602cc23ac9b7aae38145>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -21,7 +21,6 @@ export type UsersScreenQuery$data = {
     readonly posts: ReadonlyArray<{
       readonly id: string;
       readonly title: string;
-      readonly published: boolean | null;
       readonly link: string;
     }> | null;
   }> | null;
@@ -98,13 +97,6 @@ v1 = [
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "published",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
             "name": "link",
             "storageKey": null
           }
@@ -133,16 +125,16 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "1c420f3536bc14f7f405c37a6eb30c32",
+    "cacheID": "8941f3a01493cd88339502654377996b",
     "id": null,
     "metadata": {},
     "name": "UsersScreenQuery",
     "operationKind": "query",
-    "text": "query UsersScreenQuery {\n  users {\n    id\n    name\n    image\n    location\n    comment\n    posts {\n      id\n      title\n      published\n      link\n    }\n  }\n}\n"
+    "text": "query UsersScreenQuery {\n  users {\n    id\n    name\n    image\n    location\n    comment\n    posts {\n      id\n      title\n      link\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "3e984a72455c6c1c3e4368cb80d28acf";
+(node as any).hash = "af949015ced8b9edbbb820492a3301aa";
 
 export default node;

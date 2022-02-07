@@ -1,7 +1,7 @@
 // relay.config.js
 module.exports = {
   src: './src/',
-  schema: './api/schema.graphql',
+  schema: './schema.graphql',
   exclude: ['./src/__generated__/**'],
   artifactDirectory: './src/__generated__/',
 }

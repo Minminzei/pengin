@@ -2,30 +2,26 @@ const Users = [
   {
     id: "1",
     name: "本田 大志",
-    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/assets/images/user1.png",
+    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/src/assets/images/user1.png",
     comment: "よろしくおねがいします",
     location: "東京都",
     posts: [
       {
         id: "12",
-        title: "Debugging an Ionic Android App Using Chrome Dev Tools",
-        published: true,
-        link:
-          "https://medium.com/@coderonfleek/debugging-an-ionic-android-app-using-chrome-dev-tools-6e139b79e8d2",
+        title: "SPA, SSR, SSGって結局なんなんだっけ？",
+        link: "https://zenn.dev/rinda_1994/articles/e6d8e3150b312d",
       },
       {
         id: "22",
-        title: "Hosting a Laravel Application on Azure Web App",
-        published: true,
-        link:
-          "https://medium.com/@coderonfleek/hosting-a-laravel-application-on-azure-web-app-b55e12514c46",
+        title: "「3種類」で管理するReactのState戦略",
+        link: "https://zenn.dev/yoshiko/articles/607ec0c9b0408d",
       },
     ],
   },
   {
     id: "2",
     name: "森岡 友幸",
-    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/assets/images/user2.png",
+    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/src/assets/images/user2.png",
     comment: "よろしくおねがいします",
     location: "埼玉県",
     posts: [],
@@ -33,7 +29,7 @@ const Users = [
   {
     id: "3",
     name: "宮﨑 麻生",
-    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/assets/images/user3.png",
+    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/src/assets/images/user3.png",
     comment: "よろしくおねがいします",
     location: "宮城県",
     posts: [],
@@ -41,7 +37,7 @@ const Users = [
   {
     id: "4",
     name: "唐澤 光",
-    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/assets/images/user4.png",
+    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/src/assets/images/user4.png",
     comment: "よろしくおねがいします",
     location: "群馬県",
     posts: [],
@@ -49,7 +45,7 @@ const Users = [
   {
     id: "5",
     name: "古田 征二",
-    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/assets/images/user5.png",
+    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/src/assets/images/user5.png",
     comment: "よろしくおねがいします",
     location: "栃木県",
     posts: [],
@@ -57,7 +53,7 @@ const Users = [
   {
     id: "6",
     name: "大輪 俊弥",
-    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/assets/images/user6.png",
+    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/src/assets/images/user6.png",
     comment: "よろしくおねがいします",
     location: "福岡県",
     posts: [],

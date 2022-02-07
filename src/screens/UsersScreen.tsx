@@ -22,7 +22,6 @@ const UsersScreenQuery = graphql`
       posts {
         id
         title
-        published
         link
       }
     }

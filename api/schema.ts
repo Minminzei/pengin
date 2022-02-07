@@ -16,7 +16,6 @@ const schema = buildSchema(`
   type Post {
     id: ID!
     title: String!
-    published: Boolean!
     link: String
   }
   input UserInput {
