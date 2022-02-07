@@ -125,10 +125,11 @@ query {
 GraphQLをReactで実装するためのフレームワーク。主にGraphQLによるState管理と、キャッシュの管理を行う。
 
 ### GraphQLによるComponentのState管理
-コンポーネントごとに必要なAPIとデータを宣言し、使用するGraphQLによるStateが更新されたらレンダリングが発火する。
+コンポーネントごとに必要なAPIとデータを宣言し、対象のStateが更新されたらレンダリングが発火する。
 ```
 # ./src/screens/ProfileScreen.tsx
-# 使用したいAPIとデータを宣言。user(id: $id)というAPIを使って、{ id...comment }というUserデータを使用する。
+# 使用したいAPIとデータを宣言。
+# user(id: $id)というAPIを使って、{ id...comment }というUserデータを使用する。
 query ProfileScreenQuery($id: ID!) {
   user(id: $id) {
     id
@@ -138,7 +139,8 @@ query ProfileScreenQuery($id: ID!) {
     comment
   }
 }
-# StateとComponentの関連付け。userが更新されたら関数コンポーネントScreenContentが再レンダリングされる。
+# StateとComponentの関連付け。
+# userが更新されたら関数コンポーネントScreenContentが再レンダリングされる。
 function ScreenContent(props) {
   const { user } = usePreloadedQuery<ProfileScreenType>(ProfileScreenQuery, props.queryReference);
 ```
