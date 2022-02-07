@@ -207,19 +207,28 @@ const { posts } = useFragment(
 ハマったポイントを再現確認＆列挙中。。追々更新していきます。
 #### idにintは使えない
 ```
+# schema.graphql
 type User {
   id: Int!
   name: String!
 }
+# UsersScreen.tsx
+query UsersScreenQuery {
+  users {
+    id
+    name
+  }
+}
+---> Invariant Violation: RelayResponseNormalizer: Expected id of elements of field `users` to be strings.
 ```
 #### idはすべてのデータにおいてユニークでないとエラーになる
 ```
 users: {
-  id: '1'.
+  id: '1', <--- これと
   name: 'ゲスト',
   posts: [
     {
-      id: '1',
+      id: '1', <--- これが一緒だと以下のエラーが出る
       title: '投稿タイトル',
     },
   ],

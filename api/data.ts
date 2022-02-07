@@ -2,7 +2,7 @@ const Users = [
   {
     id: "1",
     name: "本田 大志",
-    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/assets/images/user1.png",
+    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/src/assets/images/user1.png",
     comment: "よろしくおねがいします",
     location: "東京都",
     posts: [
@@ -21,7 +21,7 @@ const Users = [
   {
     id: "2",
     name: "森岡 友幸",
-    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/assets/images/user2.png",
+    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/src/assets/images/user2.png",
     comment: "よろしくおねがいします",
     location: "埼玉県",
     posts: [],
@@ -29,7 +29,7 @@ const Users = [
   {
     id: "3",
     name: "宮﨑 麻生",
-    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/assets/images/user3.png",
+    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/src/assets/images/user3.png",
     comment: "よろしくおねがいします",
     location: "宮城県",
     posts: [],
@@ -37,7 +37,7 @@ const Users = [
   {
     id: "4",
     name: "唐澤 光",
-    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/assets/images/user4.png",
+    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/src/assets/images/user4.png",
     comment: "よろしくおねがいします",
     location: "群馬県",
     posts: [],
@@ -45,7 +45,7 @@ const Users = [
   {
     id: "5",
     name: "古田 征二",
-    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/assets/images/user5.png",
+    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/src/assets/images/user5.png",
     comment: "よろしくおねがいします",
     location: "栃木県",
     posts: [],
@@ -53,7 +53,7 @@ const Users = [
   {
     id: "6",
     name: "大輪 俊弥",
-    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/assets/images/user6.png",
+    image: "https://raw.githubusercontent.com/Minminzei/pengin/master/src/assets/images/user6.png",
     comment: "よろしくおねがいします",
     location: "福岡県",
     posts: [],
