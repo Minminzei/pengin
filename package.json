@@ -3,12 +3,10 @@
   "version": "1.0.0",
   "scripts": {
     "start": "expo start --dev-client",
-    "android": "expo run:android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
+    "android": "yarn run build && expo start --android",
+    "ios": "yarn run build && expo start --ios",
     "server": "./node_modules/.bin/ts-node api/server.ts --experimental-modules",
     "eject": "expo eject",
-    "relay": "yarn run build && yarn run ios",
     "build": "relay-compiler --src ./src --schema ./api/schema.graphql --artifactDirectory ./src/__generated__",
     "test": "jest --watchAll"
   },

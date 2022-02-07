@@ -1,60 +1,52 @@
-# Recoil Sample
-
+概要＆起動
+----
 #### このレポジトリについて
-- 概要
-  - React NativeのState管理としてRecoilを調査用リポジトリです
-- ゴール
-  - Recoil/ React Navigation/ GraphQL + React Relayのアーキテクチャを考える
-
-:zap:Document
----
+Recoil/ React Navigation/ GraphQL + React Relay/ Typescriptを使ったシステム開発の調査用に作ったサンプルです。
 - `Recoil` (https://recoiljs.org/docs/introduction/installation)
 - `React Navigation` (https://reactnavigation.org/docs/getting-started)
 - `React Relay` (https://relay.dev/docs/)
+- `GrapQL` (https://graphql.org/learn/)
 
 #### build(初回のみ)
 ```
 # cocoapodsを取得
 sudo gem install cocoapods
 pod setup
-```
 
-```
 # git clone
 git clone git@github.com:Minminzei/pengin.git
-```
 
-```
-# 必要なパッケージを取得してjson serverを起動
+# 必要なパッケージを取得
 cd pengin
 yarn
 cd ios
 pod install
-cd ../
-yarn server
 ```
-xcodeでプロジェクトをbuildする
-1. xcodeを起動して、open a project or fileで `pengin/ios`を開く
-2. simulatorにプロジェクトをinstallする
-![xcode](https://user-images.githubusercontent.com/3320542/151898522-3287b691-8e4e-47c3-82a5-c14fe4458012.jpg)
 
-#### start(2回目以降)
+#### 起動
 ```
-# json serverを起動
+# serverを起動
 yarn server
 
 # iosシュミレーターで起動
 yarn ios
-
-# GraphiQLにアクセス
-http://localhost:4000/graphql
 ```
 
-
-GraphQLとは？
+Stateをどう管理するか？
 -----
+Reactで管理するStateは３つ。
+|    State       | 概要          | 管理方法          |
+|------------------|--------------------|--------------------|
+| サーバーデータ | APIリクエストで取得したデータのキャッシュ | GraphQL + React Relay|
+| Global State | コンポーネントを跨いで共有したいState。インターネットのオン/オフやトーストメッセージなど。 | Recoil |
+| Local State | 各コンポーネント内で使うState | React Hook |
+[参考URL](https://zenn.dev/yoshiko/articles/607ec0c9b0408d)
+
+GraphQL/ React Relay
+-----
+### GraphQLとは？
 宣言的なリクエスト(declarative data fetching)を実装するためのクエリ言語。
-- 可能なクエリとやり取りされるデータの型を宣言するので実行結果が可視化される
+- 使用するすべての①APIの仕様と②やり取りするデータの型を定義することで実行結果を明確化する
 - over-fetchやunder-fetchを防ぐ。
 - backendとfrontendの分離が可能になる。
 
