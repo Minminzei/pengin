@@ -15,12 +15,14 @@ import {
 } from 'react-relay/hooks';
 import {
   ProfileEditScreenQuery as ProfileScreenType,
-} from '../__generated__/ProfileEditScreenQuery.graphql';
+} from '@__generated__/ProfileEditScreenQuery.graphql';
 import {
   ProfileEditScreenMutation as ProfileMutationType,
   UserInput,
-} from '../__generated__/ProfileEditScreenMutation.graphql';
-
+} from '@__generated__/ProfileEditScreenMutation.graphql';
+import { replace } from '@navigation/navigator';
+import { initialRouteName } from '@navigation/types'
+;
 const ProfileEditScreenQuery = graphql`
   query ProfileEditScreenQuery($id: ID!) {
     user(id: $id) {
@@ -158,7 +160,7 @@ function ScreenContent(props: {
   );
 }
 
-export default function ProfileEditScreen({ navigation }: any) : JSX.Element {
+export default function ProfileEditScreen() : JSX.Element {
   const { set } = Message();
   const [queryReference, loadQuery, disposeQuery] = useQueryLoader<ProfileScreenType>(ProfileEditScreenQuery);
   React.useEffect(() => {
@@ -172,7 +174,7 @@ export default function ProfileEditScreen({ navigation }: any) : JSX.Element {
       type: 'toast',
       message: '保存しました',
     });
-    navigation.navigate('Profile');
+    replace(initialRouteName, { screen: 'Profile' });
   }
   return (
     <View style={styles.container}>

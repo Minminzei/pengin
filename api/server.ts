@@ -17,5 +17,6 @@ app.set('port', 4000);
 app.set('hostname', 'localhost');
 
 app.listen(4000, () => {
+  console.log(process.env.REACT_APP_GITHUB_AUTH_TOKEN);
   console.log(`connected http://${app.get('hostname')}:${app.get('port')}`);
 });

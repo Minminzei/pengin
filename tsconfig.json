@@ -11,7 +11,8 @@
       "@screens/*": ["./screens/*"],
       "@hooks/*": ["./hooks/*"],
       "@constants/*": ["./constants/*"],
-      "@lib/*": ["./lib/*"]
+      "@lib/*": ["./lib/*"],
+      "@__generated__/*": ["./__generated__/*"]
     }
   },
   "include": [

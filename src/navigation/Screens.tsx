@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { RootStackParamList, RootTabParamList } from '../../types';
+import { RootStackParamList, RootTabParamList } from './types';
 import Icons from '@constants/Icons';
 import UsersScreen from '@screens/UsersScreen';
 import UserScreen from '@screens/UserScreen';

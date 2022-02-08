@@ -16,12 +16,15 @@ import Message from './Message';
 import {
   GlobalMenuScreens, DetailScreens, ModalScreens,
 } from './Screens';
-import { RootStackParamList, RootTabParamList, initialRouteName } from '../../types';
+import { RootStackParamList, RootTabParamList, initialRouteName } from './types';
 import LinkingConfiguration from './LinkingConfiguration';
+import { navigationRef } from './navigator'
+
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
+      ref={navigationRef}
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <RootNavigator />

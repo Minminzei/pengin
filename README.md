@@ -45,11 +45,12 @@ GraphQLとReact Relayを使ったAPI/ State管理
 -----
 ### GraphQLとは？
 宣言的なリクエスト(declarative data fetching)を実装するためのクエリ言語。使用するすべてのAPIの仕様とやり取りするデータの型を定義することで
+1. システムを可視化するので、プログラミング/ コードレビューが楽になる。
 1. over/under fetchを防ぎ、バグを予防する。
 1. backendとfrontendを分離し、開発が楽になる。
 
 ### Schema
-使用するリクエストとデータの定義書。特定言語への依存を避けるためSDL(Schema Definition Language)を使って記述する。ここで宣言されていないAPI通信やデータを使おうとするとエラーが出る。公式ドキュメントは[こちら](https://graphql.org/learn/schema/)
+使用するリクエストとデータの定義書。特定言語への依存を避けるためSDL(Schema Definition Language)を使って記述し、SDLを各言語環境にコンバートして開発を行う。ここで宣言されていないAPI通信やデータを使おうとするとエラーが出る。公式ドキュメントは[こちら](https://graphql.org/learn/schema/)
 ```
 # ./schema.graphql
 # APIの仕様。エンドポイントにusersを渡すとUserの配列が返ってくる。
@@ -76,7 +77,7 @@ type Post {
   link: String!
 }
 ```
-特定のユーザーを取得したい場合のリクエストとレスポンス結果。
+ID:1のユーザーを取得したい場合のリクエストとレスポンス結果。
 ```
 # リクエスト
 query {

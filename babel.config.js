@@ -16,6 +16,7 @@ module.exports = function(api) {
             '@hooks': './src/hooks',
             '@lib': './src/lib',
             '@constants': './src/constants',
+            '@__generated__': './src/__generated__',
           },
         },
       ],

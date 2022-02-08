@@ -11,7 +11,9 @@ import {
 import { userId } from '@constants/Debug';
 import {
   ProfileScreenQuery as ProfileScreenType,
-} from '../__generated__/ProfileScreenQuery.graphql';
+} from '@__generated__/ProfileScreenQuery.graphql';
+import { navigate } from '@navigation/navigator';
+
 const ProfileScreenQuery = graphql`
   query ProfileScreenQuery($id: ID!) {
     user(id: $id) {
@@ -25,7 +27,6 @@ const ProfileScreenQuery = graphql`
 `;
 
 function ScreenContent(props: {
-  onPress: Function;
   queryReference: any;
 }) : JSX.Element {
   const { user } = usePreloadedQuery<ProfileScreenType>(ProfileScreenQuery, props.queryReference);
@@ -49,7 +50,7 @@ function ScreenContent(props: {
         <View style={styles.button}>
           <Button
             title="プロフィール編集"
-            onPress={() => props.onPress()}
+            onPress={() => navigate('ProfileEdit')}
           />
         </View>
       </Card>
@@ -70,7 +71,6 @@ export default function ProfileScreen({ navigation }: any) : JSX.Element {
       <Suspense fallback={<Loading size="large" />}>
         {queryReference && (
           <ScreenContent
-            onPress={() => navigation.navigate('ProfileEdit')}
             queryReference={queryReference}
           />
         )}
