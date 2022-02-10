@@ -7,7 +7,6 @@ import resolvers from './resolvers'
 const app = express();
 app.use(express.json({ limit: '10mb' })) ;
 app.use(express.static(`${__dirname}/uploads`));
-console.log(`${__dirname}/uploads`);
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');

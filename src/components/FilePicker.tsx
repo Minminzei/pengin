@@ -8,17 +8,6 @@ import Color from '@constants/Colors';
 import { View } from '@components/Themed';
 import { Button } from 'react-native-elements';
 
-export const SIZE = 185;
-export const MAX_DURATION = 60;
-
-export interface Upload {
-  duration: number;
-  sizeRate: number;
-  mimeType: 'video/webm' | 'video/mp4' | 'video/quicktime';
-  url: string;
-  thumbnail?: string;
-}
-
 type extensionType = 'jpeg' | 'jpg' | 'png';
 
 export const mimeTypeMap = {
@@ -42,7 +31,6 @@ export class ImageFile {
 interface Props {
   onChange: (e:ImageFile) => void;
   onError: (e:string) => void;
-  maxSize?: number;
 }
 
 function pickerForMobile(props: Props) {
