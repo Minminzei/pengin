@@ -24,8 +24,16 @@ const schema = buildSchema(`
     location: String!
     comment: String
   }
+  input ImageInput {
+    uri: String!
+    mimeType: String!
+  }
+  type UploadedImage {
+    uri: String!
+  }
   type Mutation {
     saveUser(input: UserInput): User!
+    uploadImage(input: ImageInput): UploadedImage!
   }
 `);
 

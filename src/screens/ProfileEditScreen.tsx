@@ -22,6 +22,7 @@ import {
 } from '@__generated__/ProfileEditScreenMutation.graphql';
 import { replace } from '@navigation/navigator';
 import { initialRouteName } from '@navigation/types'
+import FilePicker from '@components/FilePicker';
 ;
 const ProfileEditScreenQuery = graphql`
   query ProfileEditScreenQuery($id: ID!) {
@@ -58,14 +59,15 @@ function ScreenContent(props: {
   const [data, setUser] = useState(user);
   function save() : void {
     setLoading(true);
-    const input: UserInput = {
-      id: data.id,
-      name: data.name,
-      location: data.location || '',
-      comment: data.comment,
-    };
     commit({
-      variables: { input },
+      variables: {
+        input: {
+          id: data.id,
+          name: data.name,
+          location: data.location || '',
+          comment: data.comment,
+        } as UserInput,
+      },
       onCompleted() {
         props.onComplete();
       },
@@ -92,6 +94,7 @@ function ScreenContent(props: {
               resizeMode="cover"
               source={{ uri: user.image }}
             />
+
           </View>
           <View style={styles.item}>
             <View style={styles.label}>

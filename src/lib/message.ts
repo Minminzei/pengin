@@ -21,7 +21,7 @@ const messageAtom = atom<Message|null>({
   default: null,
 });
 
-export default function profileMofule() {
+export default function messageModule() {
   const [message, setMessage] = useRecoilState(messageAtom);
 
   function get() : Message|null {

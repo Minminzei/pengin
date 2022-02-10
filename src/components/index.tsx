@@ -2,7 +2,9 @@
 import Loading from './Loading';
 import KeyboardAvoidingView from './KeyboardAvoidingView';
 import { MonoText } from './StyledText';
-import { View, Text, TextProps } from './Themed';
+import { View, Text } from './Themed';
+import Message from './Message';
+import FilePicker from './FilePicker';
 
 export {
   Loading,
@@ -10,5 +12,6 @@ export {
   MonoText,
   View,
   Text,
-  TextProps,
+  Message,
+  FilePicker,
 }

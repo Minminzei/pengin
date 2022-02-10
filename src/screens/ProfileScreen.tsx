@@ -6,13 +6,16 @@ import { Button, Card } from 'react-native-elements';
 import {
   usePreloadedQuery,
   useQueryLoader,
-  graphql
+  graphql,
+  useMutation,
 } from 'react-relay/hooks';
 import { userId } from '@constants/Debug';
 import {
   ProfileScreenQuery as ProfileScreenType,
 } from '@__generated__/ProfileScreenQuery.graphql';
 import { navigate } from '@navigation/navigator';
+import FilePicker from '@components/FilePicker';
+import message from '@lib/message';
 
 const ProfileScreenQuery = graphql`
   query ProfileScreenQuery($id: ID!) {
@@ -26,10 +29,20 @@ const ProfileScreenQuery = graphql`
   }
 `;
 
+const ProfileScreenMutation = graphql`
+  mutation ProfileScreenMutation($input: ImageInput) {
+    uploadImage(input: $input) {
+      uri
+    }
+  }
+`;
+
 function ScreenContent(props: {
   queryReference: any;
 }) : JSX.Element {
   const { user } = usePreloadedQuery<ProfileScreenType>(ProfileScreenQuery, props.queryReference);
+  const [commit] = useMutation(ProfileScreenMutation);
+  const { set: setError } = message();
   return (
     <View>
       <Card>
@@ -40,6 +53,27 @@ function ScreenContent(props: {
               resizeMode="cover"
               source={{ uri: user.image }}
             />
+            <View>
+              <FilePicker
+                onChange={(image) => {
+                  commit({
+                    variables: {
+                      input: {
+                        uri: image.uri,
+                        mimeType: image.mimeType,
+                      },
+                    },
+                    onCompleted(params) {
+                      console.log('onCompleted', params);
+                    },
+                  });
+                }}
+                onError={(message) => setError({
+                  type: 'error',
+                  message,
+                })}
+              />
+            </View>
           </View>
           <Card.Title h1>{user.name}</Card.Title>
           <View style={styles.body}>

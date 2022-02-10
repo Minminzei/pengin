@@ -7,6 +7,7 @@ const Icons: {
   setting: 'cog-outline',
   location: 'map-marker-outline',
   close: 'close',
-}
+  image: 'folder-multiple-image',
+};
 
 export default Icons;

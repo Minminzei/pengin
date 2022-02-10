@@ -22,6 +22,12 @@ const resolvers = {
       ...input,
     };
   },
+  uploadImage: async (params:any) => {
+    console.log(params);
+    return {
+      uri: '',
+    };
+  },
 };
 
 export default resolvers;
