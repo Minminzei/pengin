@@ -21,6 +21,7 @@ const schema = buildSchema(`
   input UserInput {
     id: ID!
     name: String!
+    image: String!
     location: String!
     comment: String
   }

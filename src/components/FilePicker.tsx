@@ -27,7 +27,7 @@ export const mimeTypeMap = {
   png: 'image/png',
 }
 
-class ImageFile {
+export class ImageFile {
   uri: string;
   mimeType: string;
   constructor(params: {

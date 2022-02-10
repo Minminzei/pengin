@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a50c87237acd1d248293141b3e5d066a>>
+ * @generated SignedSource<<73fd6bfb1e3bb9da33363044b0753b2b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,19 +13,19 @@ export type ImageInput = {
   uri: string;
   mimeType: string;
 };
-export type ProfileScreenMutation$variables = {
+export type ProfileEditScreenUploadImageMutation$variables = {
   input?: ImageInput | null;
 };
-export type ProfileScreenMutationVariables = ProfileScreenMutation$variables;
-export type ProfileScreenMutation$data = {
+export type ProfileEditScreenUploadImageMutationVariables = ProfileEditScreenUploadImageMutation$variables;
+export type ProfileEditScreenUploadImageMutation$data = {
   readonly uploadImage: {
     readonly uri: string;
   };
 };
-export type ProfileScreenMutationResponse = ProfileScreenMutation$data;
-export type ProfileScreenMutation = {
-  variables: ProfileScreenMutationVariables;
-  response: ProfileScreenMutation$data;
+export type ProfileEditScreenUploadImageMutationResponse = ProfileEditScreenUploadImageMutation$data;
+export type ProfileEditScreenUploadImageMutation = {
+  variables: ProfileEditScreenUploadImageMutationVariables;
+  response: ProfileEditScreenUploadImageMutation$data;
 };
 
 const node: ConcreteRequest = (function(){
@@ -67,7 +67,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "ProfileScreenMutation",
+    "name": "ProfileEditScreenUploadImageMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -76,20 +76,20 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "ProfileScreenMutation",
+    "name": "ProfileEditScreenUploadImageMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "84e378da81893f309985b6133ed09534",
+    "cacheID": "10e929163528a615d049ebd6e858beb8",
     "id": null,
     "metadata": {},
-    "name": "ProfileScreenMutation",
+    "name": "ProfileEditScreenUploadImageMutation",
     "operationKind": "mutation",
-    "text": "mutation ProfileScreenMutation(\n  $input: ImageInput\n) {\n  uploadImage(input: $input) {\n    uri\n  }\n}\n"
+    "text": "mutation ProfileEditScreenUploadImageMutation(\n  $input: ImageInput\n) {\n  uploadImage(input: $input) {\n    uri\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "d7b4533f0a198085c3ad3be7d465c9f6";
+(node as any).hash = "c94322d0c8a8d3c57426415fe41c3bca";
 
 export default node;

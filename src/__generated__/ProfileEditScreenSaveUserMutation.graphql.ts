@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a63994da6f4b2b70c57552dfdfec3a93>>
+ * @generated SignedSource<<235e403b1f6dca3e1b34cadd5606ae21>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,14 +12,15 @@ import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type UserInput = {
   id: string;
   name: string;
+  image: string;
   location: string;
   comment?: string | null;
 };
-export type ProfileEditScreenMutation$variables = {
+export type ProfileEditScreenSaveUserMutation$variables = {
   input?: UserInput | null;
 };
-export type ProfileEditScreenMutationVariables = ProfileEditScreenMutation$variables;
-export type ProfileEditScreenMutation$data = {
+export type ProfileEditScreenSaveUserMutationVariables = ProfileEditScreenSaveUserMutation$variables;
+export type ProfileEditScreenSaveUserMutation$data = {
   readonly saveUser: {
     readonly id: string;
     readonly name: string;
@@ -28,10 +29,10 @@ export type ProfileEditScreenMutation$data = {
     readonly comment: string | null;
   };
 };
-export type ProfileEditScreenMutationResponse = ProfileEditScreenMutation$data;
-export type ProfileEditScreenMutation = {
-  variables: ProfileEditScreenMutationVariables;
-  response: ProfileEditScreenMutation$data;
+export type ProfileEditScreenSaveUserMutationResponse = ProfileEditScreenSaveUserMutation$data;
+export type ProfileEditScreenSaveUserMutation = {
+  variables: ProfileEditScreenSaveUserMutationVariables;
+  response: ProfileEditScreenSaveUserMutation$data;
 };
 
 const node: ConcreteRequest = (function(){
@@ -101,7 +102,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "ProfileEditScreenMutation",
+    "name": "ProfileEditScreenSaveUserMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -110,20 +111,20 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "ProfileEditScreenMutation",
+    "name": "ProfileEditScreenSaveUserMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "a739e780fc522526bb1699d6645c0b2b",
+    "cacheID": "e6dfa1189de70e58c44d68d98eea8686",
     "id": null,
     "metadata": {},
-    "name": "ProfileEditScreenMutation",
+    "name": "ProfileEditScreenSaveUserMutation",
     "operationKind": "mutation",
-    "text": "mutation ProfileEditScreenMutation(\n  $input: UserInput\n) {\n  saveUser(input: $input) {\n    id\n    name\n    image\n    location\n    comment\n  }\n}\n"
+    "text": "mutation ProfileEditScreenSaveUserMutation(\n  $input: UserInput\n) {\n  saveUser(input: $input) {\n    id\n    name\n    image\n    location\n    comment\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "da1d9710ca4f0694820650c5c066677a";
+(node as any).hash = "095833cf736d5bdc908863aeac49a32d";
 
 export default node;
