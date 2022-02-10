@@ -74,3 +74,5 @@ web-build/
 dist/
 
 # @end expo-cli
+api/uploads/*
+!api/uploads/empty

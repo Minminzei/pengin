@@ -1,4 +1,5 @@
 import { ExpoConfig, ConfigContext } from '@expo/config';
+import 'dotenv/config';
 
 export default ({ config }: ConfigContext): ExpoConfig => {
   return {
@@ -16,8 +17,8 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       image: './src/assets/images/splash.png',
     },
     extra: {
-      ENV: process.env.ENV || 'development',
-      API_SERVER: 'http://localhost:3100/',
+      env: process.env.ENV || 'development',
+      apiRoot: process.env.API_ROOT,
     },
     android: {
       package: 'com.pengin',

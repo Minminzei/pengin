@@ -1,3 +1,4 @@
+import fs from 'fs/promises';
 import { Users } from './data';
 
 const resolvers = {
@@ -20,6 +21,26 @@ const resolvers = {
     return {
       ...user,
       ...input,
+    };
+  },
+  uploadImage: async (params: {
+    input: {
+      uri: string;
+      mimeType: string;
+    }
+  }) => {
+    const { input } = params;
+    const extension = input.mimeType.split('/');
+    const filename = `${Date.now()}.${extension[1]}`;
+    const imgdata = input.uri;
+    const base64Data = imgdata.replace(/^data:([A-Za-z-+/]+);base64,/, '');
+    await fs.writeFile(
+      `${__dirname}/uploads/${filename}`,
+      base64Data,
+      { encoding: 'base64' },
+    );
+    return {
+      uri: `${process.env.API_ROOT}${filename}`,
     };
   },
 };

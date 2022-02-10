@@ -68,7 +68,7 @@ function BottomTabNavigator() : JSX.Element {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="Users"
+      initialRouteName="Profile"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}

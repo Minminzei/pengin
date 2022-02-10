@@ -1,28 +1,27 @@
 import React, { Suspense, useState } from 'react';
-import {
-  StyleSheet, TextInput, Alert,
-} from 'react-native';
+import { StyleSheet, TextInput } from 'react-native';
 import Colors from '@constants/Colors';
 import { Text, View, Loading, KeyboardAvoidingView } from '@components';
 import { Button, Card } from 'react-native-elements';
 import { userId } from '@constants/Debug';
 import Message from '@lib/message';
 import {
-  usePreloadedQuery,
-  useQueryLoader,
-  graphql,
-  useMutation,
+  usePreloadedQuery, useQueryLoader, graphql, useMutation,
 } from 'react-relay/hooks';
 import {
   ProfileEditScreenQuery as ProfileScreenType,
 } from '@__generated__/ProfileEditScreenQuery.graphql';
 import {
-  ProfileEditScreenMutation as ProfileMutationType,
-  UserInput,
-} from '@__generated__/ProfileEditScreenMutation.graphql';
+  ProfileEditScreenSaveUserMutation as ProfileMutationType, UserInput,
+} from '@__generated__/ProfileEditScreenSaveUserMutation.graphql';
+import {
+  ProfileEditScreenUploadImageMutation as UploadMutationType, ImageInput,
+} from '@__generated__/ProfileEditScreenUploadImageMutation.graphql';
 import { replace } from '@navigation/navigator';
 import { initialRouteName } from '@navigation/types'
-;
+import FilePicker, { ImageFile } from '@components/FilePicker';
+import message from '@lib/message';
+
 const ProfileEditScreenQuery = graphql`
   query ProfileEditScreenQuery($id: ID!) {
     user(id: $id) {
@@ -35,8 +34,8 @@ const ProfileEditScreenQuery = graphql`
   }
 `;
 
-const ProfileEditScreenMutation = graphql`
-  mutation ProfileEditScreenMutation($input: UserInput) {
+const ProfileEditScreenSaveUser = graphql`
+  mutation ProfileEditScreenSaveUserMutation($input: UserInput) {
     saveUser(input: $input) {
       id
       name
@@ -47,30 +46,71 @@ const ProfileEditScreenMutation = graphql`
   }
 `;
 
+const ProfileEditScreenUploadImage = graphql`
+  mutation ProfileEditScreenUploadImageMutation($input: ImageInput) {
+    uploadImage(input: $input) {
+      uri
+    }
+  }
+`;
+
 function ScreenContent(props: {
   queryReference: any;
   onComplete: Function;
 }) : JSX.Element {
-
+  const { set: setError } = message();
   const [loading, setLoading] = useState<boolean>(false);
   const { user } = usePreloadedQuery<ProfileScreenType>(ProfileEditScreenQuery, props.queryReference);
-  const [commit] = useMutation<ProfileMutationType>(ProfileEditScreenMutation);
+  const [commit] = useMutation<ProfileMutationType>(ProfileEditScreenSaveUser);
+  const [uploaded] = useMutation<UploadMutationType>(ProfileEditScreenUploadImage);
   const [data, setUser] = useState(user);
   function save() : void {
     setLoading(true);
-    const input: UserInput = {
-      id: data.id,
-      name: data.name,
-      location: data.location || '',
-      comment: data.comment,
-    };
     commit({
-      variables: { input },
+      variables: {
+        input: {
+          id: data.id,
+          name: data.name,
+          image: data.image,
+          location: data.location || '',
+          comment: data.comment,
+        } as UserInput,
+      },
       onCompleted() {
         props.onComplete();
       },
       onError(error: Error) {
         setLoading(false);
+        setError({
+          type: 'error',
+          message: error.message,
+        });
+      },
+    });
+  }
+
+  function upload(image:ImageFile) : void {
+    setLoading(true);
+    uploaded({
+      variables: {
+        input: {
+          uri: image.uri,
+          mimeType: image.mimeType,
+        } as ImageInput,
+      },
+      onCompleted({ uploadImage }) {
+        setUser({
+          ...data,
+          image: uploadImage.uri,
+        });
+        setLoading(false);
+      },
+      onError(error: Error) {
+        setLoading(false);
+        setError({
+          type: 'error',
+          message: error.message,
+        });
       }
     });
   }
@@ -90,8 +130,17 @@ function ScreenContent(props: {
             <Card.Image
               style={styles.image}
               resizeMode="cover"
-              source={{ uri: user.image }}
+              source={{ uri: data.image }}
             />
+            <View>
+              <FilePicker
+                onChange={(file) => upload(file)}
+                onError={(message) => setError({
+                  type: 'error',
+                  message,
+                })}
+              />
+            </View>
           </View>
           <View style={styles.item}>
             <View style={styles.label}>
