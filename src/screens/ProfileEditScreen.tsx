@@ -4,7 +4,6 @@ import Colors from '@constants/Colors';
 import { Text, View, Loading, KeyboardAvoidingView } from '@components';
 import { Button, Card } from 'react-native-elements';
 import { userId } from '@constants/Debug';
-import Message from '@lib/message';
 import {
   usePreloadedQuery, useQueryLoader, graphql, useMutation,
 } from 'react-relay/hooks';
@@ -58,7 +57,7 @@ function ScreenContent(props: {
   queryReference: any;
   onComplete: Function;
 }) : JSX.Element {
-  const { set: setError } = message();
+  const { set: setMessage } = message();
   const [loading, setLoading] = useState<boolean>(false);
   const { user } = usePreloadedQuery<ProfileScreenType>(ProfileEditScreenQuery, props.queryReference);
   const [commit] = useMutation<ProfileMutationType>(ProfileEditScreenSaveUser);
@@ -77,11 +76,15 @@ function ScreenContent(props: {
         } as UserInput,
       },
       onCompleted() {
+        setMessage({
+          type: 'toast',
+          message: '保存しました',
+        });
         props.onComplete();
       },
       onError(error: Error) {
         setLoading(false);
-        setError({
+        setMessage({
           type: 'error',
           message: error.message,
         });
@@ -107,7 +110,7 @@ function ScreenContent(props: {
       },
       onError(error: Error) {
         setLoading(false);
-        setError({
+        setMessage({
           type: 'error',
           message: error.message,
         });
@@ -135,7 +138,7 @@ function ScreenContent(props: {
             <View>
               <FilePicker
                 onChange={(file) => upload(file)}
-                onError={(message) => setError({
+                onError={(message) => setMessage({
                   type: 'error',
                   message,
                 })}
@@ -210,7 +213,6 @@ function ScreenContent(props: {
 }
 
 export default function ProfileEditScreen() : JSX.Element {
-  const { set } = Message();
   const [queryReference, loadQuery, disposeQuery] = useQueryLoader<ProfileScreenType>(ProfileEditScreenQuery);
   React.useEffect(() => {
     loadQuery({ id: userId });
@@ -218,20 +220,13 @@ export default function ProfileEditScreen() : JSX.Element {
       disposeQuery();
     };
   }, [loadQuery]);
-  function completeEdit() : void {
-    set({
-      type: 'toast',
-      message: '保存しました',
-    });
-    replace(initialRouteName, { screen: 'Profile' });
-  }
   return (
     <View style={styles.container}>
       <Suspense fallback={<Loading size="large" />}>
         {queryReference && (
           <ScreenContent
             queryReference={queryReference}
-            onComplete={completeEdit}
+            onComplete={() => replace(initialRouteName, { screen: 'Profile' })}
           />
         )}
       </Suspense>

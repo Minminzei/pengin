@@ -1,10 +1,17 @@
 このレポジトリについて
 ----
+#### 概要
 React Native/ Expo/ Typescript/ React Navigation/ Recoil/ GraphQL/ React Relayを使ったシステム開発の調査用に作ったサンプルです。正確な仕様は公式を見てください。
 - `Recoil` (https://recoiljs.org/docs/introduction/getting-started)
 - `React Navigation` (https://reactnavigation.org/docs/getting-started)
 - `React Relay` (https://relay.dev/docs/)
 - `GraphQL` (https://graphql.org/learn/)
+
+#### このレポジトリで学べること
+1. GraphQLとReactRelayの基本的な使い方
+1. Recoilを使ったGlobal Stateの管理方法
+1. React NavigationとExpoを使ったシステム
+1. GraphQLとExpressを使った画像アップロード
 
 セットアップ
 ----
