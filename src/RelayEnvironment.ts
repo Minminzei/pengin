@@ -11,9 +11,7 @@ async function fetchGraphQL(text: string, variables: Variables) {
       `${Constants.manifest?.extra?.apiRoot}graphql`,
       {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: {},
         body: JSON.stringify({
           query: text,
           variables,
